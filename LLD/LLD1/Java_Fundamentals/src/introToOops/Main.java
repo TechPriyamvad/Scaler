@@ -1,6 +1,6 @@
 package introToOops;
 
-public class Main {
+public class  Main {
     public static void main(String[] args){
         Students s1 = new Students("A",30,40.00);
         s1.name = "Priyamvad";
