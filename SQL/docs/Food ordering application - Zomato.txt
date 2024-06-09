@@ -1,0 +1,108 @@
+Food ordering application - Zomato
+
+Normal food ordering workflow.
+1. User opens the application
+2. User browse or search for Restaurants.
+3. User can see details of Restaurants and its food Menu
+4. User Picks some Items and places an Order.
+5. User can see the past Orders.
+
+Out of Scope - Admin Panel, Customer Support, Payments
+
+Identifying Tables, Columns, Constraints, Relationships, Cardinalities and Indexes.
+
+
+User:
+    id, PK,
+    name, VARCHAR(20),
+    email, INDEX,
+    .
+    .
+    .
+    .
+
+
+/////////////////////////
+
+Nouns: User,Restaurants,food,Items,Order
+
+--------------Tables-------------------------
+
+Users:
+    user_id,INT,PRIMARY KEY,AUTO_INCREMENT
+    name,VARCHAR(20),
+    email,VARCHAR(20),UNIQUE
+    phoneNumber,INT,UNIQUE
+    age: INT,
+    joinedDate: DATE,DEFAULT  CURRENT_TIMESTAMP
+    
+    
+Address:
+    id, PK,
+    user_id, FK,
+    building_name,
+    street_name,
+    address_type
+    pincode,
+    latitude,
+    longitude
+    
+
+    
+Restaurants:
+    id,INT,PRIMARY KEY,AUTO_INCREMENT
+    name,VARCHAR(20),
+    phoneNumber,INT,UNIQUE
+    email,VARCHAR(20),UNIQUE
+    joinedDate,DATE,DEFAULT CURRENT_TIMESTAMP
+    address,VARCHAR(20)
+
+Food_Items:
+    id,INT,PRIMARY KEY
+    name,VARCHAR(20)
+    ingredients, VARCHAR(20),NOT NULL
+    category, VARCHAR(20),
+
+Restaurants_Food_Items
+    restaurant_id:INT,PRIMARY KEY
+    foodItem_id:INT,PRIMARY KEY
+    price: DOUBLE(3,2),
+    pic: varchar(50)
+
+
+Orders:
+    id,INT,PRIMARY KEY
+    itemName,VARCHAR(20)
+    orderDate, DATE,DEFAULT CURRENT_TIMESTAMP
+    status,INT
+    user_Id,FOREIGN KEY, INDEX,
+    rest_id,FK,
+    totalCost,DOUBLE(3,2)
+    
+    
+Order_breakdown:
+    id,PK,
+    order_id, FK,
+    food_item_id,FK
+    itemQuantity,INT
+    
+Orders_statuses
+    id:INT,PRIMARY KEY
+    name: VARCHAR(20)
+
+
+Rating:
+    id,pk,
+    user_id,FK,
+    food_item_id, FK,
+    rest_id,FK,
+    order_id, FK,
+    rating,
+    comment,
+    pic
+
+
+Users_Food_Items
+    user_id:INT,PRIMARY KEY
+    foodItem_id:INT,PRIMARY KEY
+
